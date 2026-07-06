@@ -5,27 +5,46 @@
 
 ZMK_CONFIG=$(dirname $(readlink -f "$0"))
 # No modules yet
-ZMK_MODULES=
+ZMK_MODULES="${ZMK_CONFIG}/../P020-zmk-modules"
 
 
+#
+# zmk-config
+#
 if ! $(podman volume exists zmk-config); then
   echo "Createing zmk-config volume as ${ZMK_CONFIG}"
   podman volume create --driver local -o o=bind -o type=none \
    -o device="${ZMK_CONFIG}" zmk-config
 fi
 
+# 
+# zmk
+#
 if ! $(podman volume exists zmk); then
   podman volume create --driver local -o o=bind -o type=none \
          -o device="$(pwd)/../P020-zmk" zmk
 fi
 
-if [ ! -n ${ZMK_MODULES} ]; then
-  if ! $(podman volume exists zmk-modules) ; then
-     echo "Createing zmk-modules volume as ${ZMK_MODULES}"
-     podman volume create --driver local -o o=bind -o type=none \
-            -o device="${ZMK_MODULES}" zmk-modules
-  fi
+#
+# zmk modules
+#
+[ ! -d ${ZMK_MODULES} ] && mkdir "${ZMK_MODULES}"
+
+if [ ! -d ${ZMK_MODULES}/oskey ]; then
+	cd "${ZMK_MODULES}"
+	git clone -b main https://github.com/mentaldesk/oskey.git oskey
+	cd -
 fi
+	
+# see https://zmk.dev/docs/features/modules
+# 
+
+if ! $(podman volume exists zmk-modules) ; then
+   echo "Creating zmk-modules volume as ${ZMK_MODULES}"
+   podman volume create --driver local -o o=bind -o type=none \
+          -o device="${ZMK_MODULES}" zmk-modules
+fi
+
 #
 # Build the ZMK container
 if [ ! -d ../P020-zmk ]; then
@@ -49,6 +68,7 @@ echo podman run -it --rm \
   --workdir /workspaces/zmk \
   -v zmk:/workspaces/zmk \
   -v zmk-config:/workspaces/zmk-config \
+  -v zmk-modules:/workspaces/zmk-modules \  
   -p 3000:3000 \
   localhost/p020-zmk-builder /bin/bash
 

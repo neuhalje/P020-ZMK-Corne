@@ -1,5 +1,6 @@
 /*
- * Copyright (c) 2020 The ZMK Contributors
+ * Copyright (c) 2026 Jens Neuhalfen
+ * Copyrightked from  (c) 2020 The ZMK Contributors
  *
  * SPDX-License-Identifier: MIT
  */
@@ -7,50 +8,219 @@
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/bt.h>
+#include <dt-bindings/zmk/oskey.h>
+#include <behaviors/oskey.dtsi>
+#include <behaviors/oskey.dtsi>
+#include "locale/keys_de.h"
+#include "keypos_def/corne.dtsi"
+
+#define DE_MAC_AT            RA(L)
+
+/* [ and ] */
+#define DE_MAC_LEFT_BRACKET  RA(DE_N5)
+#define DE_MAC_RIGHT_BRACKET RA(DE_N6)
+
+/* { and } */
+#define DE_MAC_LEFT_BRACE    RA(DE_N8)
+#define DE_MAC_RIGHT_BRACE   RA(DE_N9)
+
+
+/* pipe "|" */
+#define DE_MAC_PIPE          RA(DE_N7)
+
+/* tilde ~ */
+#define DE_MAC_TILDE         RA(DE_N)
+
 
 / {
+
+
+    behaviors {
+        /* https://github.com/mentaldesk/oskey/tree/main#built-in-common-behaviors */
+   /* AT sign on German Mac and Win */
+        os_key_at: os_key_at {
+            compatible= "zmk,behavior-os-key";
+            #binding-cells = <0>;
+            /*          Win          Mac         Lin  */
+            bindings = <&kp DE_AT>, <&kp DE_MAC_AT>, <&kp DE_AT>;
+        };
+
+   /* [ and  ] */
+        os_key_left_bracket: os_key_left_bracket {
+            compatible= "zmk,behavior-os-key";
+            #binding-cells = <0>;
+            /*          Win          Mac         Lin  */
+            bindings = <&kp DE_LEFT_BRACKET>, <&kp DE_MAC_LEFT_BRACKET>, <&kp DE_LEFT_BRACKET>;
+        };
+
+        os_key_right_bracket: os_key_right_bracket {
+            compatible= "zmk,behavior-os-key";
+            #binding-cells = <0>;
+            /*          Win          Mac         Lin  */
+            bindings = <&kp DE_RIGHT_BRACKET>, <&kp DE_MAC_RIGHT_BRACKET>, <&kp DE_RIGHT_BRACKET>;
+        };
+
+
+   /* { and  } */
+        os_key_left_brace: os_key_left_brace {
+            compatible= "zmk,behavior-os-key";
+            #binding-cells = <0>;
+            /*          Win          Mac         Lin  */
+            bindings = <&kp DE_LEFT_BRACE>, <&kp DE_MAC_LEFT_BRACE>, <&kp DE_LEFT_BRACE>;
+        };
+
+        os_key_right_brace: os_key_right_brace {
+            compatible= "zmk,behavior-os-key";
+            #binding-cells = <0>;
+            /*          Win          Mac         Lin  */
+            bindings = <&kp DE_RIGHT_BRACE>, <&kp DE_MAC_RIGHT_BRACE>, <&kp DE_RIGHT_BRACE>;
+        };
+        
+/* pipe "|" */
+        os_key_pipe: os_key_pipe {
+            compatible= "zmk,behavior-os-key";
+            #binding-cells = <0>;
+            /*          Win          Mac         Lin  */
+            bindings = <&kp DE_PIPE>, <&kp DE_MAC_PIPE>, <&kp DE_PIPE>;
+        };
+
+
+/* tilde ~ */
+        os_key_tilde: os_key_tilde {
+            compatible= "zmk,behavior-os-key";
+            #binding-cells = <0>;
+            /*          Win          Mac         Lin  */
+            bindings = <&kp DE_TILDE>, <&kp DE_MAC_TILDE>, <&kp DE_TILDE>;
+        };
+        
+/* home row mods*/
+        hml: home_row_mod_left {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "balanced";
+            require-prior-idle-ms = <150>;
+            tapping-term-ms = <280>;
+            quick-tap-ms = <175>;
+            bindings = <&kp>, <&kp>;
+            hold-trigger-key-positions = < KEYS_R >; // List of keys on the right side of the keyboard
+            hold-trigger-on-release;
+        };
+        hmr: home_row_mod_right {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "balanced";
+            require-prior-idle-ms = <150>;
+            tapping-term-ms = <280>;
+            quick-tap-ms = <175>;
+            bindings = <&kp>, <&kp>;
+            hold-trigger-key-positions = < KEYS_L >; // List of keys on the left side of the keyboard
+            hold-trigger-on-release;
+        };
+
+    };
+    
+    macros {
+        bt_win: bt_win {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&bt BT_SEL 0>, <&os_sel OS_WIN>;
+        };
+
+        bt_mac: bt_mac {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&bt BT_SEL 1>, <&os_sel OS_MAC>;
+        };
+
+        bt_lin: bt_lin {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&bt BT_SEL 2>, <&os_sel OS_LIN>;
+        };
+    };
+    
         keymap {
                 compatible = "zmk,keymap";
 
                 default_layer {
 // -----------------------------------------------------------------------------------------
-// |  TAB |  Q  |  W  |  E  |  R  |  T  |   |  Y  |  U   |  I  |  O  |  P  | BSPC |
-// | CTRL |  A  |  S  |  D  |  F  |  G  |   |  H  |  J   |  K  |  L  |  ;  |  '   |
-// | SHFT |  Z  |  X  |  C  |  V  |  B  |   |  N  |  M   |  ,  |  .  |  /  | ESC  |
-//                    | GUI | LWR | SPC |   | ENT | RSE  | ALT |
+// |  TAB |  Q  |  W  |  F  |  P  |  B  |   |  J  |  L   |  U  |  Y  |  ;  | BSPC |
+// | CTRL |  A  |  R  |  S  |  T  |  G  |   |  M  |  N   |  E  |  I  |  O  | UML  |
+// | SHFT |  Z  |  X  |  C  |  D  |  V  |   |  K  |  H   |  ,  |  .  |  /  | ESC  |
+//                    | FUN | LWR | SPC |   | ENT | RSE  | ALT |
+
                         bindings = <
-   &kp TAB   &kp Q &kp W &kp E &kp R &kp T   &kp Y &kp U  &kp I     &kp O   &kp P    &kp BSPC
-   &kp LCTRL &kp A &kp S &kp D &kp F &kp G   &kp H &kp J  &kp K     &kp L   &kp SEMI &kp SQT
-   &kp LSHFT &kp Z &kp X &kp C &kp V &kp B   &kp N &kp M  &kp COMMA &kp DOT &kp FSLH &kp ESC
-                  &kp LGUI &mo 1 &kp SPACE   &kp RET &mo 2 &kp RALT
+                        
+   &kp TAB   &kp Q    &kp W       &kp F        &kp P         &kp B               &kp J       &kp L          &kp U          &kp DE_Y    &kp DE_SINGLE_QUOTE &kp BSPC
+   &kp LCTRL &kp A    &hml LALT R &hml LSHFT S &hml LCTRL T  &hml LGUI  G        &hmr RGUI M &hmr RCTRL N   &hmr RSHIFT E  &hmr LALT I &kp O               &mo 3
+   &kp LSHFT &kp DE_Z &kp X       &kp C        &kp D         &kp V               &kp K       &kp H          &kp COMMA      &kp DOT     &kp DE_FSLH         &kp ESC
+                  &mo 4 &mo 1 &kp LSHIFT                                                   &hmr LSHIFT SPACE &mo 2 &kp RALT
                         >;
                 };
+
                 lower_layer {
 // -----------------------------------------------------------------------------------------
 // |  TAB |  1  |  2  |  3  |  4  |  5  |   |  6  |  7  |  8  |  9  |  0  | BSPC |
-// | BTCLR| BT1 | BT2 | BT3 | BT4 | BT5 |   | LFT | DWN |  UP | RGT |     |      |
-// | SHFT |     |     |     |     |     |   |     |     |     |     |     |      |
+// |      |     |     |     |     |     |   |HOME | LFT | DWN |  UP | RGT | END  |      
+// | BTCLR| BT1 | BT2 | BT3 | BT4 | BT5 |   |     |     |     |     |     |      |
 //                    | GUI |     | SPC |   | ENT |     | ALT |
                         bindings = <
-   &kp TAB    &kp N1       &kp N2       &kp N3       &kp N4       &kp N5         &kp N6   &kp N7   &kp N8 &kp N9    &kp N0 &kp BSPC
-   &bt BT_CLR &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4   &kp LEFT &kp DOWN &kp UP &kp RIGHT &trans &trans
-   &kp LSHFT  &trans       &trans       &trans       &trans       &trans         &trans   &trans   &trans &trans    &trans &trans
-                                    &kp LGUI     &trans       &kp SPACE      &kp RET  &trans   &kp RALT
+   &kp TAB    &kp N1       &kp N2       &kp N3       &kp N4       &kp N5                &kp N6   &kp N7   &kp N8   &kp N9    &kp N0    &kp DEL
+   &trans     &trans       &trans       &trans       &trans       &trans                &kp HOME &kp LEFT &kp DOWN &kp UP    &kp RIGHT &kp END
+   &bt BT_CLR &bt_win      &bt_mac      &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4          &trans   &trans   &trans   &trans    &trans    &trans
+                                    &kp LGUI     &trans       &trans                         &kp RET  &trans   &kp RALT
                         >;
                 };
 
                 raise_layer {
 // -----------------------------------------------------------------------------------------
-// |  TAB |  !  |  @  |  #  |  $  |  %  |   |  ^  |  &  |  *  |  (  |  )  | BSPC |
-// | CTRL |     |     |     |     |     |   |  -  |  =  |  [  |  ]  |  \  |  `   |
-// | SHFT |     |     |     |     |     |   |  _  |  +  |  {  |  }  | "|" |  ~   |
+// |  TAB |  !  |  @  |  #  |  $  |  %  |   |  &  |  (  |  )  |     |     | BSPC |
+// | CTRL |  ?  |  +  |  -  |  <  |  >  |   |     |  [  |  ]  |     |  \  |  `   |
+// | SHFT |  ^  |  *  |  _  |  =  |     |   |     |  {  |  }  |     | "|" |  ~   |
 //                    | GUI |     | SPC |   | ENT |     | ALT |
-                        bindings = <
-   &kp  TAB  &kp EXCL &kp AT &kp HASH &kp DLLR &kp PRCNT   &kp CARET &kp AMPS  &kp ASTRK &kp LPAR &kp RPAR &kp BSPC
-   &kp LCTRL &trans   &trans &trans   &trans   &trans      &kp MINUS &kp EQUAL &kp LBKT  &kp RBKT &kp BSLH &kp GRAVE
-   &kp LSHFT &trans   &trans &trans   &trans   &trans      &kp UNDER &kp PLUS  &kp LBRC  &kp RBRC &kp PIPE &kp TILDE
-                             &kp LGUI &trans   &kp SPACE   &kp RET   &trans    &kp RALT
+
+                      bindings = <
+   &kp TAB   &kp EXCL     &os_key_at   &kp DE_HASH  &kp DE_DLLR      &kp DE_PRCNT                  &kp DE_AMPS &kp DE_LPAR          &kp DE_RPAR           &trans &trans        &kp BSPC
+   &kp LCTRL &kp QUESTION &kp DE_PLUS  &kp DE_MINUS &kp DE_LESS_THAN &kp DE_GREATER_THAN           &trans      &os_key_left_bracket &os_key_right_bracket &trans &kp DE_BSLH   &kp DE_GRAVE
+   &kp LSHFT &kp DE_CARET &kp DE_ASTRK &kp DE_UNDER &kp DE_EQUAL     &trans                        &trans      &os_key_left_brace   &os_key_right_brace   &trans &os_key_pipe  &os_key_tilde
+                             &kp LGUI &trans   &kp SPACE                                                 &kp LALT     &trans    &kp RALT
                         >;
                 };
+
+                umlaut_layer {
+// -----------------------------------------------------------------------------------------
+// |      |     |     |     |     |     |   |     |      |  ü  |     |     |      |
+// |      |  ä  |     |  ß  |     |     |   |     |      |  €  |     |  ö  |      |
+// |      |     |     |     |     |     |   |     |      |     |     |     |      |
+//                    |     |     |     |   |     |      |     |
+                        bindings = <
+                        
+   &trans &trans          &trans &trans    &trans &trans      &trans &trans &kp DE_U_UMLAUT &trans &trans          &trans
+   &trans &kp DE_A_UMLAUT &trans &kp DE_SZ &trans &trans      &trans &trans &kp DE_EURO     &trans &kp DE_O_UMLAUT &trans
+   &trans &trans          &trans &trans    &trans &trans      &trans &trans &trans          &trans &trans          &trans
+                  &trans &trans &trans                        &trans &trans &trans
+                        >;
+                };
+
+
+                function_keys {
+// -----------------------------------------------------------------------------------------
+// |      |     |     |     |     |     |   |     |      |     |     |     |      |
+// |      |     |     |     |     |     |   |     |      |     |     |     |      |
+// |      |     |     |     |     |     |   |     |      |     |     |     |      |
+//                    |     |     |     |   |     |      |     |
+                        bindings = <
+   &kp F1 &kp F2 &kp F3 &kp F4  &kp F5 &kp F6      &kp F7 &kp F8 &kp F9 &kp F10 &kp F11 &kp F12
+   &trans &trans &trans &trans  &trans &trans      &trans &trans &trans &trans  &trans  &trans
+   &trans &trans &trans &trans  &trans &trans      &trans &trans &trans &trans  &trans  &trans
+                  &trans &trans &trans                        &trans &trans &trans
+                        >;
+                };
+                
         };
+
 };
+
+
+
+

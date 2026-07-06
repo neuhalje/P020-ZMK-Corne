@@ -6,6 +6,7 @@ podman run --rm \
 	   --workdir /workspaces/zmk \
  	   -v zmk:/workspaces/zmk \
   	   -v zmk-config:/workspaces/zmk-config \
-           localhost/p020-zmk-builder \
+       -v zmk-modules:/workspaces/zmk-modules \
+       localhost/p020-zmk-builder \
 	   /bin/bash
 

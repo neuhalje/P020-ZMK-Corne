@@ -1,11 +1,19 @@
+---
+# This file is only read by GitHub
+# for local builds, update the shell scripts
 manifest:
   remotes:
     - name: zmkfirmware
       url-base: https://github.com/zmkfirmware
+    - name: mentaldesk
+      url-base: https://github.com/mentaldesk
   projects:
     - name: zmk
       remote: zmkfirmware
-      revision: v0.3
+      revision: main
       import: app/west.yml
+    - name: oskey
+      remote: mentaldesk
+      revision: main
   self:
     path: config
