@@ -1,0 +1,218 @@
+layout: { zmk_keyboard: corne }
+layers:
+  default:
+    - ESC
+    - Q
+    - W
+    - F
+    - P
+    - B
+    - J
+    - L
+    - U
+    - Y
+    - "'"
+    - BSPC
+    - LCTRLBT
+    - A
+    - { t: R, h: LALT }
+    - { t: S, h: LSHFT }
+    - { t: T, h: LCTRL }
+    - { t: G, h: LGUI }
+    - { t: M, h: RGUI }
+    - { t: N, h: RCTRL }
+    - { t: E, h: RSHIFT }
+    - { t: I, h: LALT }
+    - O
+    - umlaut
+    - LSHFT
+    - Z
+    - X
+    - C
+    - D
+    - V
+    - K
+    - H
+    - ","
+    - .
+    - "/"
+    - TAB
+    - fn
+    - lower
+    - LSHIFT
+    - { t: SPACE, h: LSHIFT }
+    - raise
+    - RALT
+  lower:
+    - ESC
+    - "1"
+    - "2"
+    - "3"
+    - "4"
+    - "5"
+    - "6"
+    - "7"
+    - "8"
+    - "9"
+    - "0"
+    - DEL
+    - { t: ▽, type: trans }
+    - { t: ▽, type: trans }
+    - { t: ▽, type: trans }
+    - { t: ▽, type: trans }
+    - { t: ▽, type: trans }
+    - { t: ▽, type: trans }
+    - HOME
+    - LEFT
+    - DOWN
+    - UP
+    - RIGHT
+    - END
+    - { t: ▽, type: trans }
+    - { t: ▽, type: trans }
+    - { t: ▽, type: trans }
+    - { t: ▽, type: trans }
+    - { t: ▽, type: trans }
+    - { t: ▽, type: trans }
+    - { t: ▽, type: trans }
+    - { t: ▽, type: trans }
+    - { t: ▽, type: trans }
+    - { t: ▽, type: trans }
+    - { t: ▽, type: trans }
+    - { t: ▽, type: trans }
+    - LGUI
+    - { type: held }
+    - { t: ▽, type: trans }
+    - RET
+    - { t: ▽, type: trans }
+    - RALT
+  raise:
+    - ESC
+    - "!"
+    - "@"
+    - "#"
+    - "$"
+    - "%"
+    - "&"
+    - "("
+    - ")"
+    - { t: ▽, type: trans }
+    - '"'
+    - BSPC
+    - LCTRL
+    - "?"
+    - "+"
+    - "-"
+    - "<"
+    - ">"
+    - { t: ▽, type: trans }
+    - "["
+    - "]"
+    - '\'
+    - "`"
+    - { t: ▽, type: trans }
+    - LSHFT
+    - "^"
+    - "*"
+    - "_"
+    - "="
+    - { t: ▽, type: trans }
+    - { t: ▽, type: trans }
+    - "{"
+    - "}"
+    - "|"
+    - "~"
+    - { t: ▽, type: trans }
+    - LGUI
+    - { t: ▽, type: trans }
+    - SPACE
+    - LALT
+    - { type: held }
+    - RALT
+  umlaut:
+    - { t: ▽, type: trans }
+    - { t: ▽, type: trans }
+    - { t: ▽, type: trans }
+    - { t: ▽, type: trans }
+    - { t: ▽, type: trans }
+    - { t: ▽, type: trans }
+    - { t: ▽, type: trans }
+    - { t: ▽, type: trans }
+    - "Ü"
+    - { t: ▽, type: trans }
+    - { t: ▽, type: trans }
+    - { t: ▽, type: trans }
+    - { t: ▽, type: trans }
+    - "Ä"
+    - { t: ▽, type: trans }
+    - "ß"
+    - { t: ▽, type: trans }
+    - { t: ▽, type: trans }
+    - { t: ▽, type: trans }
+    - { t: ▽, type: trans }
+    - "€"
+    - { t: ▽, type: trans }
+    - "Ö"
+    - { type: held }
+    - { t: ▽, type: trans }
+    - { t: ▽, type: trans }
+    - { t: ▽, type: trans }
+    - { t: ▽, type: trans }
+    - { t: ▽, type: trans }
+    - { t: ▽, type: trans }
+    - { t: ▽, type: trans }
+    - { t: ▽, type: trans }
+    - { t: ▽, type: trans }
+    - { t: ▽, type: trans }
+    - { t: ▽, type: trans }
+    - { t: ▽, type: trans }
+    - { t: ▽, type: trans }
+    - { t: ▽, type: trans }
+    - { t: ▽, type: trans }
+    - { t: ▽, type: trans }
+    - { t: ▽, type: trans }
+    - { t: ▽, type: trans }
+  function_keys:
+    - F1
+    - F2
+    - F3
+    - F4
+    - F5
+    - F6
+    - F7
+    - F8
+    - F9
+    - F10
+    - F11
+    - F12
+    - { t: ▽, type: trans }
+    - { t: ▽, type: trans }
+    - { t: ▽, type: trans }
+    - { t: ▽, type: trans }
+    - { t: ▽, type: trans }
+    - { t: ▽, type: trans }
+    - { t: ▽, type: trans }
+    - { t: ▽, type: trans }
+    - { t: ▽, type: trans }
+    - { t: ▽, type: trans }
+    - { t: ▽, type: trans }
+    - { t: ▽, type: trans }
+
+    - BT CLR
+    - { t: BT, h: "1 - win" }
+    - { t: BT, h: "2 - mac" }
+    - { t: BT, h: "3" }
+    - { t: BT, h: "4" }
+    - { t: BT, h: "5" }
+    - { t: ▽, type: trans }
+    - { t: ▽, type: trans }
+    - { t: ▽, type: trans }
+    - { t: ▽, type: trans }
+    - { t: ▽, type: trans }
+    - { t: ▽, type: trans }
+    - { type: held }
+    - { t: ▽, type: trans }
+    - { t: ▽, type: trans }
+    - { t: ▽, type: trans }
+    - { t: ▽, type: trans }
+    - { t: ▽, type: trans }
