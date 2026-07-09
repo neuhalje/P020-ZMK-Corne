@@ -165,9 +165,9 @@
 // |      |     |     |     |     |     |   |     |      |     |     |     |      |
 //                    | GUI |     | SPC |   | ENT |     | ALT |
                         bindings = <
-   &kp ESC    &kp N1       &kp N2       &kp N3       &kp N4       &kp N5                &kp N6   &kp N7   &kp N8   &kp N9    &kp N0    &kp DEL
-   &trans     &trans       &kp LALT     &kp LSHFT    &kp LCTRL    &kp LGUI              &kp HOME &kp LEFT &kp DOWN &kp UP    &kp RIGHT &kp END
-   &trans &trans &trans &trans  &trans &trans      &trans &trans &trans &trans  &trans  &trans
+   &kp ESC    &kp N1    &kp N2      &kp N3       &kp N4       &kp N5                &kp N6   &kp N7   &kp N8    &kp N9    &kp N0    &kp DEL
+   &none      &none     &kp LALT    &kp LSHFT    &kp LCTRL    &kp LGUI              &kp HOME &kp LEFT &kp UP    &kp RIGHT &kp END   &none
+   &none      &none     &none       &none        &none        &none                 &none    &none    &kp DOWN  &none     &none     &none
                                     &kp LGUI     &trans       &trans                         &kp RET  &trans   &kp RALT
                         >;
                 };
@@ -180,10 +180,10 @@
 //                    | GUI |     | SPC |   | ENT |     | ALT |
 
                       bindings = <
-   &kp ESC   &kp EXCL        &os_key_at   &kp DE_HASH  &kp DE_DLLR      &kp DE_PRCNT                  &kp DE_AMPS &kp DE_LPAR          &kp DE_RPAR           &trans        &kp DE_DOUBLE_QUOTES   &kp BSPC
-   &kp LCTRL &kp DE_QUESTION &kp DE_PLUS  &kp DE_MINUS &kp DE_LESS_THAN &kp DE_GREATER_THAN           &trans      &os_key_left_bracket &os_key_right_bracket &kp DE_BSLH   &kp DE_GRAVE           &trans
-   &kp LSHFT &kp DE_CARET    &kp DE_ASTRK &kp DE_UNDER &kp DE_EQUAL     &trans                        &trans      &os_key_left_brace   &os_key_right_brace   &os_key_pipe  &os_key_tilde          &trans
-                             &kp LGUI &trans   &kp SPACE                                                 &kp LALT     &trans    &kp RALT
+   &kp ESC   &kp EXCL        &os_key_at   &kp DE_HASH  &kp DE_DLLR      &kp DE_PRCNT                  &kp DE_AMPS &kp DE_LPAR          &kp DE_RPAR           &none        &kp DE_DOUBLE_QUOTES   &kp BSPC
+   &kp LCTRL &kp DE_QUESTION &kp DE_PLUS  &kp DE_MINUS &kp DE_LESS_THAN &kp DE_GREATER_THAN           &none      &os_key_left_bracket &os_key_right_bracket &kp DE_BSLH   &kp DE_GRAVE           &none
+   &kp LSHFT &kp DE_CARET    &kp DE_ASTRK &kp DE_UNDER &kp DE_EQUAL     &trans                        &none      &os_key_left_brace   &os_key_right_brace   &os_key_pipe  &os_key_tilde          &trans
+                             &kp LGUI &none   &kp SPACE                                                 &kp LALT     &none    &kp RALT
 
                         >;
                 };
@@ -196,9 +196,9 @@
 //                    |     |     |     |   |     |      |     |
                         bindings = <
                         
-   &trans &trans          &trans &trans    &trans &trans      &trans &trans &kp DE_U_UMLAUT &trans &trans          &trans
-   &trans &kp DE_A_UMLAUT &trans &kp DE_SZ &trans &trans      &trans &trans &kp DE_EURO     &trans &kp DE_O_UMLAUT &trans
-   &trans &trans          &trans &trans    &trans &trans      &trans &trans &trans          &trans &trans          &trans
+   &none &none          &none &none    &none &none      &none &none &kp DE_U_UMLAUT &none &none          &none
+   &none &kp DE_A_UMLAUT &none &kp DE_SZ &none &none      &none &none &kp DE_EURO     &none &kp DE_O_UMLAUT &none
+   &none &none          &none &none    &none &none      &none &none &none          &none &none          &none
                   &trans &trans &trans                        &trans &trans &trans
                         >;
                 };
@@ -211,12 +211,13 @@
 // | BTCLR| BT1 | BT2 | BT3 | BT4 | BT5 |   |     |     |     |     |     |      |
 
                         bindings = <
-   &kp F1 &kp F2 &kp F3 &kp F4  &kp F5 &kp F6      &kp F7 &kp F8 &kp F9 &kp F10 &kp F11 &kp F12
-   &trans &trans &trans &trans  &trans &trans      &trans &trans &trans &trans  &trans  &trans
-   &bt BT_CLR &bt_win      &bt_mac      &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4          &trans   &trans   &trans   &trans    &trans    &trans
-                  &trans &trans &trans                        &trans &trans &trans
+   &kp F1     &kp F2       &kp F3     &kp F4       &kp F5       &kp F6            &kp F7   &kp F8   &kp F9   &kp F10  &kp F11  &kp F12
+   &none      &none        &kp LALT   &kp LSHFT    &kp LCTRL    &kp LGUI          &none    &none    &none    &none    &none    &none
+   &bt BT_CLR &bt_win      &bt_mac    &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4      &none    &none    &none    &none    &none    &none
+                  &trans &trans &trans                                                        &trans &trans &trans
                         >;
                 };
+
                 
         };
         
